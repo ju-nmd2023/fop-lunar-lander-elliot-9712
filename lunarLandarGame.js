@@ -3,8 +3,6 @@ let starX = [];
 let starY = [];
 let starAlpha = [];
 
-let spacecraftX = 0;
-let spacecraftY = 0;
 let flame = false;
 
 let moonY = 250;
@@ -18,9 +16,9 @@ let showGame = false;
 let startGame = false;
 
 //code from https://pixelkind.github.io/foundationsofprogramming//programming/15-07-example
-for (let i = 0; i < 200; i++){
-    const x = Math.floor(Math.random() * width);
-    const y = Math.floor(Math.random() * height);
+for (let i = 0; i < 500; i++){
+    const x = Math.floor(Math.random() * 850);
+    const y = Math.floor(Math.random() * 850);
     const alpha = Math.random();
 
     starX.push(x);
@@ -29,7 +27,7 @@ for (let i = 0; i < 200; i++){
 }
 
 function setup(){
-    createCanvas(width, height);
+    createCanvas(850, 850);
     background(255, 255, 255);
 }
 
@@ -49,13 +47,13 @@ function keyPressed(){
     } else if (showGame === false && keyCode === 67) { // C
         startGame = true;
          controls();
-    }  else  if (keyCode === 32) { // Spacebar
+    }  else  if (keyCode === 32) { // Space
         flame = true;
     }
 }
 
 function keyReleased() {
-    if (keyCode === 32) { // Spacebar
+    if (keyCode === 32) { // Space
         flame = false; 
     }
 }
@@ -161,6 +159,7 @@ function moon(){
     fill(110, 110, 110);
     ellipse(moonX+230, moonY+290, 20, 10);
 
+    //
     fill(110, 110, 110);
     ellipse(moonX+240, moonY+390, 20, 10);
 
@@ -312,8 +311,6 @@ function winScreen(){
     textAlign(CENTER); 
     text("Quit By Pressing ESC", width/2, 350);
     pop();
-
-    restartGame();
 }
 
 function lossScreen(){
@@ -336,22 +333,19 @@ function lossScreen(){
     textAlign(CENTER); 
     text("Quit By Pressing ESC", width/2, 350);
     pop();
-
-    restartGame();
-
 }
 
 function speedometer(){
     push();
     fill(255, 255, 255);
     textSize(30);
-    text(Math.floor(velocity.toString()*20) + " km/h", 100, 100); //rounds the velocity to a whole number then converts it into a string and is then multiplied by 20
+    text(Math.floor(velocity.toString()*20) + " km/h", 100, 100);
     pop();
 
     if (velocity * 20 > 30){
         fill(255, 0, 0);
         textSize(30);
-        text(Math.floor(velocity.toString()*20) + " km/h", 100, 100);  //same as before but it the value of the string is less then 30 the text color changes from white to red
+        text(Math.floor(velocity.toString()*20) + " km/h", 100, 100);
     }
 }
 
@@ -377,7 +371,7 @@ function draw(){
     spacecraftY = spacecraftY + velocity;
     velocity = velocity + acceleration;
 
-    if (keyIsPressed && keyCode === 32) { //Spacebar
+    if (keyIsPressed && keyCode === 32) {
         velocity = velocity - 0.2;
     }
 
