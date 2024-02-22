@@ -49,13 +49,13 @@ function keyPressed(){
     } else if (showGame === false && keyCode === 67) { // C
         startGame = true;
          controls();
-    }  else  if (keyCode === 32) { // Space
+    }  else  if (keyCode === 32) { // Spacebar
         flame = true;
     }
 }
 
 function keyReleased() {
-    if (keyCode === 32) { // Space
+    if (keyCode === 32) { // Spacebar
         flame = false; 
     }
 }
@@ -161,7 +161,6 @@ function moon(){
     fill(110, 110, 110);
     ellipse(moonX+230, moonY+290, 20, 10);
 
-    //
     fill(110, 110, 110);
     ellipse(moonX+240, moonY+390, 20, 10);
 
@@ -346,13 +345,13 @@ function speedometer(){
     push();
     fill(255, 255, 255);
     textSize(30);
-    text(Math.floor(velocity.toString()*20) + " km/h", 100, 100);
+    text(Math.floor(velocity.toString()*20) + " km/h", 100, 100); //rounds the velocity to a whole number then converts it into a string and is then multiplied by 20
     pop();
 
     if (velocity * 20 > 30){
         fill(255, 0, 0);
         textSize(30);
-        text(Math.floor(velocity.toString()*20) + " km/h", 100, 100);
+        text(Math.floor(velocity.toString()*20) + " km/h", 100, 100);  //same as before but it the value of the string is less then 30 the text color changes from white to red
     }
 }
 
@@ -378,7 +377,7 @@ function draw(){
     spacecraftY = spacecraftY + velocity;
     velocity = velocity + acceleration;
 
-    if (keyIsPressed && keyCode === 32) {
+    if (keyIsPressed && keyCode === 32) { //Spacebar
         velocity = velocity - 0.2;
     }
 
